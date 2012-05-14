@@ -24,7 +24,6 @@ module Bowling
     def roll(pins, frame = 1)
       @score += pins   
       update_score_card(pins, frame)  
-      handle_strike_scoring(pins, frame) 
     end
     
     def score_for_frame(n)
@@ -46,16 +45,6 @@ module Bowling
       end
     end
     
-    def handle_strike_scoring(pins, frame)
-      # Check previous frame for a strike and update the score card
-      if frame > 1
-        score_array = score_for_frame(frame - 2)
-        # Is the previous hit a strike?
-        if score_array.include?(10) 
-          score_array << pins
-        end
-      end
-    end
   end
   
 end
