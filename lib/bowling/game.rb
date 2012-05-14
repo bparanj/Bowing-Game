@@ -16,7 +16,7 @@ module Bowling
     end
     
     def strike
-      @score = 10
+      @score += 10
     end
         
     def roll(pins)

@@ -45,6 +45,13 @@ module Bowling
       
       game.score.should == 22
     end
+    
+    it "should return 300 for a perfect game" do
+      game = Game.new
+      30.times { game.strike }
+      
+      game.score.should == 300
+    end
   end  
 end
 
