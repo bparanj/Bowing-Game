@@ -23,21 +23,37 @@ module Bowling
         
     def roll(pins, frame = 1)
       @score += pins   
-      update_score_card(pins, frame)   
+      update_score_card(pins, frame)  
+      handle_strike_scoring(pins, frame) 
     end
     
-    def score_for(frame)
-      @score_card[frame]
+    def score_for_frame(n)
+      @score_card[n - 1]
+    end
+    
+    def score_total_upto_frame(n)
+      @score_card.flatten.inject{|x, sum| x += sum}
     end
     
     private
     
     def update_score_card(pins, frame)
-      if @score_card[frame].nil?
-        @score_card[frame] = []
-        @score_card[frame][0] = pins
+      if @score_card[frame - 1].nil?
+        @score_card[frame - 1] = []
+        @score_card[frame - 1][0] = pins
       else
-        @score_card[frame][1] = pins
+        @score_card[frame - 1][1] = pins        
+      end
+    end
+    
+    def handle_strike_scoring(pins, frame)
+      # Check previous frame for a strike and update the score card
+      if frame > 1
+        score_array = score_for_frame(frame - 2)
+        # Is the previous hit a strike?
+        if score_array.include?(10) 
+          score_array << pins
+        end
       end
     end
   end
