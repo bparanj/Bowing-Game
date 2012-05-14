@@ -52,6 +52,25 @@ module Bowling
       
       game.score.should == 300
     end
+    
+    it "should return a score of 8 for first hit of 6 pins and the second hit of 2 pins for the first frame" do
+      game = Game.new
+      game.frame = 1
+      
+      game.roll(6)
+      game.roll(2)
+      
+      game.score.should == 8
+    end
+    
+    it "should return the score for a given frame to allow display of score" do
+      game = Game.new
+      
+      game.roll(6)
+      game.roll(2)
+      
+      game.score_for(1).should == [6, 2]      
+    end
   end  
 end
 

@@ -1,1 +1,2 @@
 1. Miss method implementation helped to setup the require statements and get the spec working.
+2. To run specs: $ rspec spec/bowling/game_spec.rb --color --format doc
