@@ -11,6 +11,10 @@ module Bowling
       @score = 0
     end
     
+    def spare
+      @score += 10  
+    end
+    
     def strike
       @score = 10
     end

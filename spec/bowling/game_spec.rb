@@ -22,10 +22,21 @@ module Bowling
       game.roll(7)
       game.roll(3)
       
-      game.score.should == 10
+      game.roll(2)
+      
+      game.score.should == 12
+    end
+
+    it "for a spare the bowler gets the 10 + the total number of pins knocked down on the next roll only" do
+      game = Game.new
+      game.spare
+      
+      game.roll(2)
+      
+      game.score.should == 12
     end
     
-    it "when a strike is bowled, the bowler is awarded the score of 10, plus the total of the next two roll to that frame" do
+    it "for a strike, the bowler gets the 10 + the total of the next two roll to that frame" do
       game = Game.new
       game.strike
       
