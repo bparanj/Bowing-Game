@@ -71,6 +71,19 @@ module Bowling
       
       game.score_for(1).should == [6, 2]      
     end
+    # This test passed without failing. Gave me confidence it can handle scoring multiple frames
+    it "should return the total score for first two frames of a game" do
+      g = Game.new
+      # Frame #1
+      g.roll(6)
+      g.roll(2)
+      # Frame #2
+      g.roll(7, 2)
+      g.roll(1,2)
+      
+      g.score.should == 16
+    end
+    
   end  
 end
 
