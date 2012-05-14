@@ -17,11 +17,12 @@ module Bowling
       game.score.should == 10
     end
     
-    it "should return the number of pins hit for a spare" do
+    it "should return 10 for a spare (Remaining pins left standing after the first roll are knocked down on the second roll)" do
       game = Game.new
-      game.spare(8)
+      game.roll(7)
+      game.roll(3)
       
-      game.score.should == 8
+      game.score.should == 10
     end
     
     it "when a strike is bowled, the bowler is awarded the score of 10, plus the total of the next two roll to that frame" do
