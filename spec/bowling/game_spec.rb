@@ -48,7 +48,7 @@ module Bowling
     
     it "should return 300 for a perfect game" do
       game = Game.new
-      30.times { game.strike }
+      repeat(30) { game.strike } 
       
       game.score.should == 300
     end
