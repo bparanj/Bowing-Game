@@ -85,7 +85,7 @@ module Bowling
       g.score.should == 16
     end
 
-    context "Bonus Scoring : All 10 pins are hit." do
+    context "Bonus Scoring : All 10 pins are hit on the first ball roll. The Strike" do
       it "Rolling a strike : All 10 pins are hit on the first ball roll. Score is 10 pins + Score for the next two ball rolls" do
         g = Game.new
         # Frame 1
@@ -100,19 +100,21 @@ module Bowling
         g.score.should == (8 + 10 + 9 + 0)        
       end
 
-      it "should return the score of a given frame by adding to the running total + 10 + the score for next two balls for a strike" do
+      it "should return the score of a given frame by adding to the running total + 10 + the score for next two balls for a strike"  do
         g = Game.new
-        # Frame 1
-        g.roll(6)
-        g.roll(2)
-        # Frame 2
-        g.roll(7, 2)
-        g.roll(1, 2)
-        # Frame 3        
-        g.roll(10,3)
-        # Frame 4
-        g.roll(9, 4)
-        g.roll(1, 4)
+        g.frame_set do
+          # Frame 1
+          g.roll(6)
+          g.roll(2)
+          # Frame 2
+          g.roll(7, 2)
+          g.roll(1, 2)
+          # Frame 3        
+          g.roll(10,3)
+          # Frame 4
+          g.roll(9, 4)
+          g.roll(1, 4)
+        end
         # score_total_upto_frame(3) should be 36
         g.score_total_upto_frame(3).should == (6 + 2 + 7 + 1 + 10 + 9 + 1)
       end
@@ -132,8 +134,37 @@ module Bowling
           g.roll(9,4)
           g.roll(1,4)          
         end
-
+        # g.score_total_upto_frame(4) is 46
         g.score_total_upto_frame(4).should == (6 + 2 + 7 + 1 + 10 + 9 + 1 + 9 + 1)
+      end
+      
+      context "Bonus Scoring : All 10 pins are hit on the second ball roll. The Spare" do
+        it "should return the score that is ten pins + number of pins hit on the next ball roll" do
+          g = Game.new
+          
+          g.frame_set do
+            g.roll(6)
+            g.roll(2)
+            
+            g.roll(7,2)
+            g.roll(1,2)
+            
+            g.roll(10, 3)
+            
+            g.roll(9,4)
+            g.roll(0,4)
+            # A spare happens on the fifth frame
+            g.roll(8,5)
+            g.roll(2,5)
+            
+            g.roll(1, 6)
+            
+          end 
+          # 55
+          p g.score_total_upto_frame(5)
+          g.score_total_upto_frame(5).should == (6 + 2) + (7 + 1) + (10 + 9 + 0) + (9 + 0) + (8 + 2 + 1)
+          
+        end
       end
       
     end
