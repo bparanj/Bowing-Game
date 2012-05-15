@@ -112,10 +112,30 @@ module Bowling
         g.roll(10,3)
         # Frame 4
         g.roll(9, 4)
-        g.roll(0, 4)
-
-        g.score_total_upto_frame(3).should == (6 + 2 + 7 + 1 + 10 + 9 + 0)
+        g.roll(1, 4)
+        # score_total_upto_frame(3) should be 36
+        g.score_total_upto_frame(3).should == (6 + 2 + 7 + 1 + 10 + 9 + 1)
       end
+      
+      it "should return the total score of the game that includes a strike" do
+        g = Game.new
+        
+        g.frame_set do
+          g.roll(6)
+          g.roll(2)
+
+          g.roll(7,2)
+          g.roll(1,2)          
+        
+          g.roll(10,3)
+
+          g.roll(9,4)
+          g.roll(1,4)          
+        end
+
+        g.score_total_upto_frame(4).should == (6 + 2 + 7 + 1 + 10 + 9 + 1 + 9 + 1)
+      end
+      
     end
   end  
 end

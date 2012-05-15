@@ -34,6 +34,11 @@ module Bowling
       @score_card.flatten.inject{|x, sum| x += sum}
     end
     
+    def frame_set
+      yield 
+      update_strike_score
+    end
+    
     private
     
     def update_score_card(pins, frame)
@@ -45,6 +50,21 @@ module Bowling
       end
     end
     
+    def update_strike_score
+      strike_index = 100
+
+      @score_card.each_with_index do |e, i|
+       # Update the strike score only once
+       if e.include?(10) and (e.size == 1)
+         strike_index = i
+       end
+      end
+
+      last_element_index = (@score_card.size - 1)
+      if strike_index < last_element_index
+        @score_card[strike_index] +=  @score_card[last_element_index]
+      end
+    end
   end
   
 end
