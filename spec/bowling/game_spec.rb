@@ -138,36 +138,36 @@ module Bowling
         g.score_total_upto_frame(4).should == (6 + 2 + 7 + 1 + 10 + 9 + 1 + 9 + 1)
       end
       
-      context "Bonus Scoring : All 10 pins are hit on the second ball roll. The Spare" do
-        it "should return the score that is ten pins + number of pins hit on the next ball roll" do
-          g = Game.new
-          
-          g.frame_set do
-            g.roll(6)
-            g.roll(2)
-            
-            g.roll(7,2)
-            g.roll(1,2)
-            
-            g.roll(10, 3)
-            
-            g.roll(9,4)
-            g.roll(0,4)
-            # A spare happens on the fifth frame
-            g.roll(8,5)
-            g.roll(2,5)
-            
-            g.roll(1, 6)
-            
-          end 
-          # 55
-          p g.score_total_upto_frame(5)
-          g.score_total_upto_frame(5).should == (6 + 2) + (7 + 1) + (10 + 9 + 0) + (9 + 0) + (8 + 2 + 1)
-          
-        end
-      end
-      
     end
+    
+    context "Bonus Scoring : All 10 pins are hit on the second ball roll. The Spare" do
+      it "should return the score that is ten pins + number of pins hit on the next ball roll" do
+        g = Game.new
+        
+        g.frame_set do
+          g.roll(6)
+          g.roll(2)
+          
+          g.roll(7,2)
+          g.roll(1,2)
+          
+          g.roll(10, 3)
+          
+          g.roll(9,4)
+          g.roll(0,4)
+          # A spare happens on the fifth frame
+          g.roll(8,5)
+          g.roll(2,5)
+          
+          g.roll(1, 6)
+          
+        end 
+        # 55
+        # p g.score_total_upto_frame(5)
+        g.score_total_upto_frame(5).should == (6 + 2) + (7 + 1) + (10 + 9 + 0) + (9 + 0) + (8 + 2 + 1)          
+      end        
+    end
+    
   end  
 end
 
