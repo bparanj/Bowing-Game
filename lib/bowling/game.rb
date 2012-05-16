@@ -9,14 +9,6 @@ module Bowling
       @score_card = []
     end
     
-    def miss
-      @score = 0
-    end
-    
-    def spare
-      @score += 10  
-    end
-    
     def strike
       @score += 10
     end
