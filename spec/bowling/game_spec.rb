@@ -129,8 +129,7 @@ module Bowling
           g.roll(1, 6)
           
         end 
-        # 55
-        # p g.score_total_upto_frame(5)
+        # p g.score_total_upto_frame(5) -- 55
         g.score_total_upto_frame(5).should == (6 + 2) + (7 + 1) + (10 + 9 + 0) + (9 + 0) + (8 + 2 + 1)          
       end        
     end

@@ -1,6 +1,6 @@
 # Bowling
 
-TODO: Write a gem description
+Bowling game score calculator.
 
 ## Installation
 
@@ -18,7 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+See the specs under spec directory. To run specs: 
+$ rspec spec/bowling/game_spec.rb --color --format doc
+
+Most of the specs were derived from http://www.bowling2u.com/trivia/game/scoring.asp
 
 ## Contributing
 

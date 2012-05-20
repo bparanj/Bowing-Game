@@ -1,6 +1,4 @@
 1. Miss method implementation helped to setup the require statements and get the spec working.
-2. To run specs: $ rspec spec/bowling/game_spec.rb --color --format doc
-3. Most of the specs were derived from http://www.bowling2u.com/trivia/game/scoring.asp
 
 Implement frame method and trigger the following score update logic after roll is complete for a given frame:
 
