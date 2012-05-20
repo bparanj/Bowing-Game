@@ -65,7 +65,7 @@ module Bowling
       @score_card.each_with_index do |e, i|
         # Skip strike score
         unless e.include?(10)
-          if (e.size == 2) and (e.inject(:+) == 10)
+          if (e.size == 2) and (sum(e) == 10)
             spare_index = i
           end
         end
@@ -75,6 +75,10 @@ module Bowling
       if spare_index < last_element_index
         @score_card[spare_index] +=  [@score_card[last_element_index][0]]
       end
+    end
+    # This can be extracted into a summable module and mixed-in to Array class
+    def sum(e)
+      e.inject(:+)
     end
   end
   
