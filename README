@@ -1,22 +1,7 @@
 1. Miss method implementation helped to setup the require statements and get the spec working.
 
-Implement frame method and trigger the following score update logic after roll is complete for a given frame:
 
-a = [[6, 2], [7, 1], [10], [9, 1]]
+TODO:
 
-p a
-
-strike_index = 100
-
-a.each_with_index do |e, i|
- if e.include?(10) and (e.size == 1)
-    strike_index = i
- end
-end
-
-last_element_index = a.size - 1
-if strike_index < last_element_index
- a[strike_index] +=  a[last_element_index]
-end
-
-p a
+1. Wrap this with a command line interface.
+2. Expose this gem over http.
